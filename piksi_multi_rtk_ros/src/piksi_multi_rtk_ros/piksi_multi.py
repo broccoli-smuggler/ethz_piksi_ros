@@ -9,9 +9,15 @@
 
 import rospy
 import math
-import quaternion
 import numpy as np
-import datetime, time, leapseconds
+import quaternion
+import sys
+
+if sys.version_info[0] == 2:
+    import leapseconds
+else:
+    from .leapseconds import leapseconds
+import datetime, time
 from collections import deque
 import std_srvs.srv
 # Import message types
@@ -721,7 +727,7 @@ class PiksiMulti:
                 rospy.signal_shutdown("Watchdog triggered, was gps disconnected?")
 
     def gps_time_to_utc(self, wn, tow, ns_residual):
-        epoch = datetime.datetime(1980,01,06)
+        epoch = datetime.datetime(1980,1,6)
         secs, msecs = divmod(tow, 1000)
         usec = ns_residual / 1000.0 # TODO(rikba): Handle nanoseconds.
         elapsed = datetime.timedelta(seconds=secs, microseconds=usec, milliseconds=msecs, weeks=wn)

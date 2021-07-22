@@ -21,5 +21,10 @@
   <depend>sensor_msgs</depend>
   <depend>roslib</depend>
   <depend>rospy</depend>
-
+  <depend>pbd</depend>
+  <depend>llvmlite</depend>
+  <depend>numpy-quaternion</depend>
+  <depend>scipy</depend>
+  <depend>pypro</depend>
+  <depend>numba</depend>
 </package>

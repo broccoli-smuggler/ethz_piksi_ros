@@ -42,7 +42,7 @@ catkin_python_setup()
 #############
 ## Install ##
 #############
- catkin_install_python(PROGRAMS bin/piksi_multi bin/geodetic_survey
+ catkin_install_python(PROGRAMS bin/piksi_multi bin/geodetic_survey bin/leapseconds
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
