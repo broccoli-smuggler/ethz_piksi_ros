@@ -18,7 +18,7 @@ if sys.version_info[0] == 2:
     import UdpHelpers
 else:
     from .leapseconds import leapseconds
-    from .UdpHelpers import UdpHelpers
+    import piksi_multi_rtk_ros.UdpHelpers as UdpHelpers
 
 import datetime, time
 from collections import deque
