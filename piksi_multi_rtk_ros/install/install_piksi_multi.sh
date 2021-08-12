@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO_TAG=v2.6.5 #version you want to checkout before installing
+REPO_TAG=v3.4.10 #version you want to checkout before installing
 
 #---------------- SBP ----------------
 echo " "

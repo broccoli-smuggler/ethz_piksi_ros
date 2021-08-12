@@ -37,7 +37,7 @@ class UDPDriver(BaseDriver):
         try:
             #self.handle.connect((host, port))
             self.handle.bind(("", port))
-        except socket.error, msg:
+        except socket.error as msg:
             pass
         super(UDPDriver, self).__init__(self.handle)
         self._write_lock = threading.Lock()
@@ -47,11 +47,11 @@ class UDPDriver(BaseDriver):
             try:
                 data, addr = self.handle.recvfrom(4096)
                 if not data:
-                    print "PIKSI UDP ERROR - no data from " + str(addr)
+                    print("PIKSI UDP ERROR - no data from " + str(addr))
                 for d in data:
                     self.buf.append(d)
-            except socket.error, msg:
-                print "PIKSI UDP ERROR " + str(msg)
+            except socket.error as msg:
+                print("PIKSI UDP ERROR " + str(msg))
 
         res = ''.join([self.buf.popleft() for i in xrange(min(size, len(self.buf)))])
         return res
@@ -71,7 +71,7 @@ class UDPDriver(BaseDriver):
         try:
             self._write_lock.acquire()
             self.handle.sendall(s)
-        except socket.error, msg:
+        except socket.error as msg:
             raise IOError
         finally:
             self._write_lock.release()

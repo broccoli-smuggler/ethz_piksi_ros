@@ -15,8 +15,11 @@ import sys
 
 if sys.version_info[0] == 2:
     import leapseconds
+    import UdpHelpers
 else:
     from .leapseconds import leapseconds
+    from .UdpHelpers import UdpHelpers
+
 import datetime, time
 from collections import deque
 import std_srvs.srv
@@ -54,7 +57,6 @@ from sbp.ext_events import *
 # At the moment importing 'sbp.version' module causes ValueError: Cannot find the version number!
 # import sbp.version
 # networking stuff
-import UdpHelpers
 import time
 import subprocess
 import re
@@ -505,6 +507,7 @@ class PiksiMulti:
             ping = subprocess.Popen(command, stdout=subprocess.PIPE)
 
             out, error = ping.communicate()
+            out = str(out)
             # Search for 'min/avg/max/mdev' round trip delay time (rtt) numbers.
             matcher = re.compile("(\d+.\d+)/(\d+.\d+)/(\d+.\d+)/(\d+.\d+)")
 
@@ -1459,7 +1462,7 @@ class PiksiMulti:
         out, error = pip_show_output.communicate()
 
         # Search for version number, output assumed in the form "Version: X.X.X"
-        version_output = re.search("Version: \d+.\d+.\d+", out)
+        version_output = re.search("Version: \d+.\d+.\d+", str(out))
 
         if version_output is None:
             # No version found
